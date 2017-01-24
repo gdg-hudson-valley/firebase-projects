@@ -1,0 +1,7 @@
+{
+  "name": "ReactFire Chat",
+  "short_name": "ReactFire Chat",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

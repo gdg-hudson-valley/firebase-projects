@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "name": "ReactFire Chat",
+  "launch_path": "/index.html",
+  "description": "Chat with friends using Firebase 3.0 and React",
+  "developer": {
+    "name": "GDG Hudson Valley / Adapted from Google Codelab",
+    "url": "https://gdghudsonvalley.github.io"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "ReactFire Chat",
+      "description": "Chat with friends using Firebase 3.0 and React"
+    }
+  }
+}
