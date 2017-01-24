@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "reactfire-chat-app",
+    "staging": "reactfire-chat-app"
+  }
+}
