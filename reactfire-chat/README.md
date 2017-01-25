@@ -84,5 +84,10 @@ At this point, we should be in sync with [Step 6](https://codelabs.developers.go
 
 ## 4. (Codelab) User Sign-In
 
+ * [View Codelab Directions](https://codelabs.developers.google.com/codelabs/firebase-web/index.html?index=..%2F..%2Findex#6). All these changes will be made in the _FirebaseHelper.js_ file
+ * Create shortcuts to firebase features (auth, database, storage)
+ * Register handler to process auth state changes (onAuthStateChanged)
+ * (Complete STEP-1, STEP-2, STEP-3, STEP-4, STEP-5)
+
  
 

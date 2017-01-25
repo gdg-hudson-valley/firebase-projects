@@ -1,3 +1,5 @@
+import * as firebase from 'firebase'
+
 export default class FirebaseHelper {
 
     constructor() {
@@ -37,8 +39,16 @@ export default class FirebaseHelper {
 
     // Sets up shortcuts to Firebase features and initiate firebase auth.
     initFirebase = () => {
-        // TODO(DEVELOPER):
-        // Initialize Firebase.
+      // TODO(DEVELOPER): STEP-1
+      // Initialize Firebase
+
+      // Shortcuts to Firebase SDK features.
+      this.auth = firebase.auth();
+      this.database = firebase.database();
+      this.storage = firebase.storage();
+
+      // Initiates Firebase auth and listen to auth state changes.
+      this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
     }
 
     // Loads chat messages history and listens for upcoming ones.
@@ -94,22 +104,34 @@ export default class FirebaseHelper {
 
     // Signs-in Friendly Chat.
     signIn = () => {
-      // TODO(DEVELOPER):
+      // TODO(DEVELOPER): STEP-2
       // Sign in Firebase with credential from the Google user.
+      // Sign in Firebase using popup auth and Google as the identity provider.
+      var provider = new firebase.auth.GoogleAuthProvider();
+      this.auth.signInWithPopup(provider);
     };
 
     // Signs-out of Friendly Chat.
     signOut = () => {
-      // TODO(DEVELOPER):
+      // TODO(DEVELOPER): STEP-3
       // Sign out of Firebase.
+      this.auth.signOut();
     };
 
     // Triggers when the auth state change for instance when the user signs-in or signs-out.
     onAuthStateChanged = (user) => {
+
       if (user) { // User is signed in!
+
         // Get profile pic and user's name from the Firebase user object.
-        var profilePicUrl = null;   // TODO(DEVELOPER): Get profile pic.
-        var userName = null;        // TODO(DEVELOPER): Get user's name.
+
+        // TODO(DEVELOPER): STEP-4
+        // Get profile pic.
+        var profilePicUrl = user.photoURL;
+
+        // TODO(DEVELOPER): STEP-5
+        // Get user's name.
+        var userName = user.displayName;
 
         // Set the user's profile pic and name.
         this.userPic.style.backgroundImage = 'url(' + profilePicUrl + ')';
@@ -125,7 +147,10 @@ export default class FirebaseHelper {
 
         // We load currently existing chant messages.
         this.loadMessages();
-      } else { // User is signed out!
+      }
+
+      else { // User is signed out!
+
         // Hide user's profile and sign-out button.
         this.userName.setAttribute('hidden', 'true');
         this.userPic.setAttribute('hidden', 'true');
