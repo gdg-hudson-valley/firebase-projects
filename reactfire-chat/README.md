@@ -154,3 +154,20 @@ Now start updating codebase to do the following (again, in _FirebaseHelper.js_)
 
 You can update rules directly on backend, or edit the (firebase.json specified) rules file in codebase and push the updates (on deploy) exactly the same way as done for database.
 
+
+## 10. This completes deployment. 
+
+Topics covered:
+
+ * Firebase Project Creation
+ * Firebase CLI Install & Configuration
+ * Front-end scaffolding with Create-React-App
+ * Front-end configuring with Firebase CLI
+ * Front-end initialization and deployment (Firebase Hosting)
+ 
+ Front-end refactored from "FriendlyChat" starter codebase. [Codelab](https://codelabs.developers.google.com/codelabs/firebase-web/index.html) continued from Step 7.
+
+ * Firebase Authentication (login with Google, logout)
+ * Firebase Real-Time Database (send messages, real-time sync)
+ * Firebase Storage (store images)
+ * Firebase Static Hosting (deploy, use)
