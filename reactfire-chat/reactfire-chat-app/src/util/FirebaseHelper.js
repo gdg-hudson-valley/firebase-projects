@@ -102,8 +102,17 @@ export default class FirebaseHelper {
     setImageUrl = (imageUri, imgElement) => {
       imgElement.src = imageUri;
 
-      // TODO(DEVELOPER):
+      // TODO(DEVELOPER): STEP-9
       // If image is on Firebase Storage, fetch image URL and set img element's src.
+      if (imageUri.startsWith('gs://')) {
+        imgElement.src = FirebaseHelper.LOADING_IMAGE_URL; // Display a loading image first.
+        this.storage.refFromURL(imageUri).getMetadata().then(function(metadata) {
+          imgElement.src = metadata.downloadURLs[0];
+        });
+      } else {
+        imgElement.src = imageUri;
+      }
+
     };
 
     // Saves a new message containing an image URI in Firebase.
@@ -127,8 +136,27 @@ export default class FirebaseHelper {
       // Check if the user is signed-in
       if (this.checkSignedInWithMessage()) {
 
-        // TODO(DEVELOPER):
+        // TODO(DEVELOPER): STEP-8
         // Upload image to Firebase storage and add message.
+        // We add a message with a loading icon that will get updated with the shared image.
+        var currentUser = this.auth.currentUser;
+        this.messagesRef.push({
+          name: currentUser.displayName,
+          imageUrl: FirebaseHelper.LOADING_IMAGE_URL,
+          photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
+        }).then(function(data) {
+
+          // Upload the image to Firebase Storage.
+          this.storage.ref(currentUser.uid + '/' + Date.now() + '/' + file.name)
+              .put(file, {contentType: file.type})
+              .then(function(snapshot) {
+                // Get the file's Storage URI and update the chat message placeholder.
+                var filePath = snapshot.metadata.fullPath;
+                data.update({imageUrl: this.storage.ref(filePath).toString()});
+              }.bind(this)).catch(function(error) {
+            console.error('There was an error uploading a file to Firebase Storage:', error);
+          });
+        }.bind(this));
       }
     };
 

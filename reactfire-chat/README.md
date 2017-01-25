@@ -128,3 +128,12 @@ Now start updating codebase to do the following (again, in _FirebaseHelper.js_)
 ## 7. (Codelab) Send Messages
 
 * Update _sendMessage_ to push new message data to database (STEP-7)
+
+## 8. (Codelab) Send Images
+
+* Let's explore the Firebase Storage features
+* Firebase storage is a file/blob service
+* Create a unique filename for the upload (in folder/file format e.g., <uid>/<timestamp>/<file_name>)
+* Make sure firebase.json has a storage bucket configured
+* Returned (stored) image URL will have format ```gs://<bucket>/<uid>/<timestamp>/<file_name>```
+* Update _saveImageMessage_ (STEP-8) and setImageUrl (STEP-9)
