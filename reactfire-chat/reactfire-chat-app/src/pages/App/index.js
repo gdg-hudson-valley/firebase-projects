@@ -35,7 +35,7 @@ class AppHeader extends Component {
             <button hidden id="sign-out" className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
               Sign-out
             </button>
-            <button hidden id="sign-in" className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+            <button id="sign-in" className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
               <i className="material-icons">account_circle</i>Sign-in with Google
             </button>
           </div>
