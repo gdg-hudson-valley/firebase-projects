@@ -75,5 +75,14 @@ Create-React-App uses webpack to bundle and optimize application for deployment.
       - Select Firebase project to deploy to
       - Provide friendly name for alias (for this deployment destination)
   * Simply use correct alias to deploy _same_ codebase to different projects
+
+## 3. Migrate FriendlyChat code
+
+For quick exploration, we simply migrate existing HTML and JS code directly into our React components.. some minor modifications were made for efficiency and for compliance with React JSX (vs. HTML) requirements.
+
+At this point, we should be in sync with [Step 6](https://codelabs.developers.google.com/codelabs/firebase-web/index.html?index=..%2F..%2Findex#5) of the Friendly Chat App codelab.
+
+## 4. (Codelab) User Sign-In
+
  
 
