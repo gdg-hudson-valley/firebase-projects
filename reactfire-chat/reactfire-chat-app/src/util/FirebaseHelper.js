@@ -74,11 +74,27 @@ export default class FirebaseHelper {
     // Saves a new message on the Firebase DB.
     saveMessage = (e) => {
       e.preventDefault();
+      console.log("SIGNED IN: "+this.checkSignedInWithMessage());
+      console.log("CURRENT USER: ",this.auth.currentUser);
 
       // Check that the user entered a message and is signed in.
       if (this.messageInput.value && this.checkSignedInWithMessage()) {
-        // TODO(DEVELOPER):
+        // TODO(DEVELOPER): STEP-7
         // push new message to Firebase.
+
+        var currentUser = this.auth.currentUser;
+        // Add a new message entry to the Firebase Database.
+        this.messagesRef.push({
+          name: currentUser.displayName,
+          text: this.messageInput.value,
+          photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
+        }).then(function() {
+          // Clear message text field and SEND button state.
+          this.resetMaterialTextfield(this.messageInput);
+          this.toggleButton();
+        }.bind(this)).catch(function(error) {
+          console.error('Error writing new message to Firebase Database', error);
+        });
       }
     };
 
@@ -139,11 +155,11 @@ export default class FirebaseHelper {
 
         // Get profile pic and user's name from the Firebase user object.
 
-        // TODO(DEVELOPER): STEP-4
+        // TODO(DEVELOPER): STEP-4a
         // Get profile pic.
         var profilePicUrl = user.photoURL;
 
-        // TODO(DEVELOPER): STEP-5
+        // TODO(DEVELOPER): STEP-4b
         // Get user's name.
         var userName = user.displayName;
 
@@ -177,8 +193,12 @@ export default class FirebaseHelper {
 
     // Returns true if user is signed-in. Otherwise false and displays a message.
     checkSignedInWithMessage = () => {
-      // TODO(DEVELOPER):
+      // TODO(DEVELOPER): STEP-5
       // Check if user is signed-in Firebase.
+      // Return true if the user is signed in Firebase
+      if (this.auth.currentUser) {
+        return true;
+      }
 
       // Display a message to the user using a Toast.
       var data = {

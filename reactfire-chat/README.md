@@ -116,3 +116,15 @@ Now start updating codebase to do the following (again, in _FirebaseHelper.js_)
  * Add code that listens for **child_added** and **child_changed** events, and uses the associated data to update UI with new or changed message info. (STEP-6)
  * Now when app is reloaded, and user logs in, they should see the three sample messages on chat screen.
 
+
+## 6. (Codelab) Database Security Rules: Optional
+
+ * By default, new Firebase projects are setup with database that allows only authenticated access to data.
+ * Rules are declared using a [rules language](https://firebase.google.com/docs/database/security/) and stored in the console [Database > Rules Tab](https://console.firebase.google.com/project/reactfire-chat-app/database/rules)
+ * Rules can be edited directly in the console, or can be written in a file that is then deployed to the backend and used to overwrite the defaults in the console. Simply create a json file (e.g., _database.rules.json_) and specify its path in the _firebase.json_ config file in a "database" object under a "rules" property.
+ * These file-based rules are automatically pushed to the backend on the next ```firebase deploy``` cycle.
+
+
+## 7. (Codelab) Send Messages
+
+* Update _sendMessage_ to push new message data to database (STEP-7)
