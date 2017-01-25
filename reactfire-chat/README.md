@@ -137,3 +137,20 @@ Now start updating codebase to do the following (again, in _FirebaseHelper.js_)
 * Make sure firebase.json has a storage bucket configured
 * Returned (stored) image URL will have format ```gs://<bucket>/<uid>/<timestamp>/<file_name>```
 * Update _saveImageMessage_ (STEP-8) and setImageUrl (STEP-9)
+
+
+## 9. (Codelab) Storage Security Rules: Optional
+
+ Comes with default rules on backend that allows any authenticated user to read and write to storage.
+
+```
+ service firebase.storage {
+  match /b/<PROJECT_ID>.appspot.com/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+```
+
+You can update rules directly on backend, or edit the (firebase.json specified) rules file in codebase and push the updates (on deploy) exactly the same way as done for database.
+
