@@ -89,5 +89,30 @@ At this point, we should be in sync with [Step 6](https://codelabs.developers.go
  * Register handler to process auth state changes (onAuthStateChanged)
  * (Complete STEP-1, STEP-2, STEP-3, STEP-4, STEP-5)
 
- 
+## 5. (Codelab) Read Messages
+
+ First, import default messages into the database (backend) or add them manually, to provide cold start data. 
+ ```
+ {
+  "messages" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "text" : "Hello",
+      "name" : "anonymous"
+    },
+    "-K2ib5JHRbbL0NrztUfO" : {
+      "text" : "How are you",
+      "name" : "anonymous"
+    },
+    "-K2ib62mjHh34CAUbide" : {
+      "text" : "I am fine",
+      "name" : "anonymous"
+    }
+  }
+}
+ ```
+
+Now start updating codebase to do the following (again, in _FirebaseHelper.js_)
+
+ * Add code that listens for **child_added** and **child_changed** events, and uses the associated data to update UI with new or changed message info. (STEP-6)
+ * Now when app is reloaded, and user logs in, they should see the three sample messages on chat screen.
 

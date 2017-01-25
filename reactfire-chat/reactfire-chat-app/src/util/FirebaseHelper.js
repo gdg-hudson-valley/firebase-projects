@@ -53,8 +53,22 @@ export default class FirebaseHelper {
 
     // Loads chat messages history and listens for upcoming ones.
     loadMessages = () =>  {
-        // TODO(DEVELOPER):
-        // Load and listens for new messages.
+      // TODO(DEVELOPER): STEP-6
+      // Load and listens for new messages.
+
+        // Reference to the /messages/ database path.
+      this.messagesRef = this.database.ref('messages');
+      // Make sure we remove all previous listeners.
+      this.messagesRef.off();
+
+      // Loads the last 12 messages and listen for new ones.
+      var setMessage = function(data) {
+        var val = data.val();
+        this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
+      }.bind(this);
+
+      this.messagesRef.limitToLast(12).on('child_added', setMessage);
+      this.messagesRef.limitToLast(12).on('child_changed', setMessage);
     }
 
     // Saves a new message on the Firebase DB.
